@@ -23,5 +23,5 @@ export async function connectDB() {
         throw error;
     }
 }
-
+connectDB()
 export default app
