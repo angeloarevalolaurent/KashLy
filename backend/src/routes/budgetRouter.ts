@@ -37,5 +37,9 @@ router.put('/:id',
     handleInputError,
     BudgetController.updateById)
 
-router.delete('/:id', BudgetController.deleteById)
+router.delete('/:id', 
+    param('id').isInt().withMessage('ID no válido')
+    .custom(value => value > 0).withMessage('ID no válido'),
+    handleInputError,
+    BudgetController.deleteById)
 export default router

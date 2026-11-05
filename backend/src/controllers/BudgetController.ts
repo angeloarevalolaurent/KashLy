@@ -75,6 +75,25 @@ export class BudgetController {
     }
 
     static deleteById = async(req:Request, res:Response) =>{
-        res.send('desde delete api/budgets/:id')
+        try {
+            
+            const { id } = req.params
+            // TODO:  Verificamos que id sea un string y no un array
+            if (typeof id !== 'string') {
+                return res.status(400).json({error:'ID no válido' })
+            }
+
+            const budget = await Budget.findByPk(id)
+            if (!budget) {
+                const error = new Error('Presupuesto no encontrado')
+                return res.status(404).json({error: error.message})
+            }
+
+            await budget.destroy()
+            res.json('Presupuesto eliminado correctamente')
+        } catch (error) {
+            console.log(error);
+            res.status(500).json({error: 'Hubo un error'})
+        }
     }
 } 
