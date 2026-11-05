@@ -30,7 +30,19 @@ export class BudgetController {
     }
 
     static getById = async(req:Request, res:Response) =>{
-        res.send('desde getgetById api/budgets/:id')
+        const {id} = req.params
+        // TODO:  Verificamos que id sea un string y no un array
+        if (typeof id !== 'string') {
+            return res.status(400).json({error:'ID no válido' })
+        }
+
+        const budget = await Budget.findByPk(id)
+        if (!budget) {
+            const error = new Error('Presupuesto no encontrado')
+            return res.status(404).json({error:error.message})
+        }
+
+        res.json(budget)
     }
 
     static updateById = async(req:Request, res:Response) =>{
