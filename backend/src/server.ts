@@ -2,12 +2,18 @@ import express from 'express'
 import colors from 'colors'
 import morgan from 'morgan'
 import { db } from './config/db'
+import budgetRouter from './routes/budgetRouter'
+
 
 const app = express()
 
+// Middlewares
 app.use(morgan('dev'))
-
 app.use(express.json())
+
+
+//Rutas
+app.use('/api/budgets', budgetRouter)
 
 // Conexión a la base de datos
 export async function connectDB() {
