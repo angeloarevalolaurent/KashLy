@@ -2,7 +2,7 @@ import { Router } from "express";
 import { BudgetController } from "../controllers/BudgetController";
 import { handleInputError } from "../middleware/validation";
 import { body, param } from "express-validator";
-import { validateBudgetId } from "../middleware/budget";
+import { validateBudgetExists, validateBudgetId } from "../middleware/budget";
 
 const router = Router()
 
@@ -21,10 +21,12 @@ router.post('/',
 
 router.get('/:id', 
     validateBudgetId,
+    validateBudgetExists,
     BudgetController.getById)
 
 router.put('/:id', 
     validateBudgetId,
+    validateBudgetExists,
     body('name')
         .trim()
         .notEmpty().withMessage('El nombre del presupuesto no puede ir vacio'),
@@ -37,5 +39,6 @@ router.put('/:id',
 
 router.delete('/:id', 
     validateBudgetId,
+    validateBudgetExists,
     BudgetController.deleteById)
 export default router
