@@ -56,4 +56,15 @@ export class AuthController {
             res.status(500).json({error: 'Hubo un error'})
         }
     }
+
+    static login = async(req:Request, res: Response) => {
+        
+        try {
+          console.log('desde login');
+          
+        } catch (error) {
+            console.log(error);
+            res.status(500).json({error: 'Hubo un error'})
+        }
+    }
 }
