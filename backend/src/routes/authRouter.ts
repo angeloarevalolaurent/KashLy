@@ -3,6 +3,7 @@ import { body } from "express-validator";
 
 import { handleInputError } from "../middleware/validation";
 import { AuthController } from "../controllers/AuthController";
+import { limiter } from "../config/limiter";
 
 const router = Router()
 
@@ -18,6 +19,7 @@ router.post('/create-account',
 
 
 router.post('/confirm-account',
+    limiter,
     body('token')
         .notEmpty()
         .isLength({min: 6, max: 6})
