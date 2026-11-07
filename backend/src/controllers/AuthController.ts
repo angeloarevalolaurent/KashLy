@@ -66,5 +66,10 @@ export class AuthController {
             const error = new Error('Usuario no encontrado')
             return res.status(401).json({error: error.message})
         }
+
+         if (!user.confirmed) {
+            const error = new Error('La cuenta no ha sido confirmada')
+            return res.status(403).json({error: error.message})
+        }
     }
 }
