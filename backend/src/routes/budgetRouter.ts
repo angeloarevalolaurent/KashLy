@@ -1,6 +1,7 @@
 import { Router } from "express";
 import { BudgetController } from "../controllers/BudgetController";
 import { validateBudgetExists, validateBudgetId, validateBudgetInput } from "../middleware/budget";
+import { ExpensesController } from "../controllers/ExpenseController";
 
 const router = Router()
  
@@ -17,4 +18,13 @@ router.get('/:budgetId', BudgetController.getById)
 router.put('/:budgetId', validateBudgetInput, BudgetController.updateById)
 
 router.delete('/:budgetId', BudgetController.deleteById)
+
+
+/**Routes de Expense */
+router.get('/:budgetId/expenses', ExpensesController.getAll)
+router.post('/:budgetId/expenses', ExpensesController.create)
+router.get('/:budgetId/expenses/:expenseId', ExpensesController.getById)
+router.put('/:budgetId/expenses/:expenseId', ExpensesController.updateById)
+router.delete('/:budgetId/expenses/:expenseId', ExpensesController.deleteById)
+
 export default router
