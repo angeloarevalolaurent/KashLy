@@ -16,4 +16,13 @@ router.post('/create-account',
     handleInputError,
     AuthController.createAccount)
 
+
+router.post('/confirm-account',
+    body('token')
+        .notEmpty()
+        .isLength({min: 6, max: 6})
+        .withMessage('El token no válido'),
+    handleInputError,
+    AuthController.confirmAccount
+)
 export default router
