@@ -3,6 +3,7 @@ import colors from 'colors'
 import morgan from 'morgan'
 import { db } from './config/db'
 import budgetRouter from './routes/budgetRouter'
+import authRouter from './routes/authRouter'
 
 
 const app = express()
@@ -14,6 +15,7 @@ app.use(express.json())
 
 //Rutas
 app.use('/api/budgets', budgetRouter)
+app.use('/api/auth', authRouter)
 
 // Conexión a la base de datos
 export async function connectDB() {
