@@ -2,13 +2,13 @@ import { Router } from "express";
 import { BudgetController } from "../controllers/BudgetController";
 import { validateBudgetExists, validateBudgetId, validateBudgetInput } from "../middleware/budget";
 import { ExpensesController } from "../controllers/ExpenseController";
-import { validateExpenseInput } from "../middleware/Expense";
+import { validateExpenseId, validateExpenseInput } from "../middleware/Expense";
 
 const router = Router()
  
 router.param('budgetId', validateBudgetId)
 router.param('budgetId', validateBudgetExists)
-
+router.param('expenseId', validateExpenseId)
 
 router.get('/', BudgetController.getAll)
 

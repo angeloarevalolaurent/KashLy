@@ -16,7 +16,7 @@ export class ExpensesController {
     }
   
     static getById = async (req: Request, res: Response) => {
-
+        
     }
 
     static updateById = async (req: Request, res: Response) => {
