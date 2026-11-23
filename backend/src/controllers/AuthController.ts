@@ -154,5 +154,9 @@ export class AuthController {
                 error: 'Error al crear la cuenta'
             })
         }
-    }    
+    }   
+    
+    static user = async (req: Request, res: Response) => {
+        res.json(req.headers.authorization)
+    }
 }
