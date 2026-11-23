@@ -160,4 +160,9 @@ export class AuthController {
     static user = async (req: Request, res: Response) => {
          res.json(req.user)
     }
+
+    static updateCurrentUserPassword = async (req: Request, res: Response) => {
+        console.log('updateCurrentUserPassword');
+        
+    }
 }
