@@ -21,7 +21,7 @@ app.use('/api/auth', authRouter)
 export async function connectDB() {
     try {
         await db.authenticate();
-        await db.sync();
+        await db.sync({ alter: true });
 
         console.log(colors.blue.bold('Conexión exitosa a la BD'));
 

@@ -3,9 +3,11 @@ import { BudgetController } from "../controllers/BudgetController";
 import { validateBudgetExists, validateBudgetId, validateBudgetInput } from "../middleware/budget";
 import { ExpensesController } from "../controllers/ExpenseController";
 import { validateExpenseExists, validateExpenseId, validateExpenseInput } from "../middleware/Expense";
+import { authenticate } from "../middleware/auth";
 
 const router = Router()
- 
+router.use(authenticate)
+
 router.param('budgetId', validateBudgetId)
 router.param('budgetId', validateBudgetExists)
 router.param('expenseId', validateExpenseId)
