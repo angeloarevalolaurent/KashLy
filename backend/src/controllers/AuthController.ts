@@ -4,7 +4,7 @@ import { checkPassword, hashPassword } from "../utils/auth";
 import { generateToken } from "../utils/token";
 import { AuthEmail } from "../emails/AuthEmail";
 import { generateJWT } from "../utils/jwt";
-import jwt from 'jsonwebtoken';
+
 
 export class AuthController {
 
