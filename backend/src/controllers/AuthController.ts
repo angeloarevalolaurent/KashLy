@@ -173,6 +173,8 @@ export class AuthController {
         }
 
 
-        res.json(user)
+        user.password = await hashPassword(password)
+        await user.save()
+        res.json('El password se modificó correctamente')
     }
 }
