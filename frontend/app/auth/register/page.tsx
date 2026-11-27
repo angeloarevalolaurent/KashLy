@@ -1,3 +1,4 @@
+import Link from "next/link"
 import RegisterForm from "@/components/auth/RegisterForm";
 import { Metadata } from "next";
 
@@ -19,6 +20,27 @@ export default function RegisterPage() {
       </p>
 
       <RegisterForm />
+     <nav className="mt-8 flex flex-col items-center space-y-3 border-t border-slate-200/80 pt-6 text-sm sm:flex-row sm:justify-between sm:space-y-0">
+      <Link
+        href="/auth/login"
+        className="font-medium text-slate-600 transition-colors hover:text-[#141B2D]"
+      >
+        ¿Ya tienes cuenta?{" "}
+        <span className="font-bold text-[#47A329] hover:text-[#38881e] hover:underline">
+          Iniciar Sesión
+        </span>
+      </Link>
+
+      <Link
+        href="/auth/forgot-password"
+        className="font-medium text-slate-600 transition-colors hover:text-[#141B2D]"
+      >
+        ¿Olvidaste tu contraseña?{" "}
+        <span className="font-bold text-[#F29D18] hover:text-[#d9880c] hover:underline">
+          Reestablecer
+        </span>
+      </Link>
+    </nav>
     </>
   );
 }
