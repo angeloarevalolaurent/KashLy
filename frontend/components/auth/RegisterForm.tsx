@@ -1,12 +1,15 @@
 'use client'
 
+import { useRouter } from "next/navigation"
 import ErrorMessage from "../ui/ErrorMessage"
 import { registerAccount } from "@/action/create-account-action"
-import { useEffect } from "react"
+import { useEffect, useRef } from "react"
 import { useFormState } from "react-dom"
 import { toast } from "react-toastify"
 
 export default function RegisterForm() {
+    const router = useRouter()
+    const ref = useRef<HTMLFormElement>(null)
     const [state, dispatch] = useFormState(registerAccount,{
         errors:{},
         success:''
@@ -19,6 +22,8 @@ export default function RegisterForm() {
         }
         if (state.success) {
             toast.success(state.success)
+            ref.current?.reset()
+            router.push('/auth/login')
         }
     },[state])
 
