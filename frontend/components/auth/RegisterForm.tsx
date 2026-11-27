@@ -1,15 +1,22 @@
 'use client'
 import ErrorMessage from "../ui/ErrorMessage"
 import { registerAccount } from "@/action/create-account-action"
+import { useEffect } from "react"
 import { useFormState } from "react-dom"
+import { toast } from "react-toastify"
 
 export default function RegisterForm() {
     const [state, dispatch] = useFormState(registerAccount,{
         errors:{},
+        success:''
     })
    
     console.log(state);
-    
+    useEffect(()=>{
+        if (state.success) {
+            toast.success(state.success)
+        }
+    },[state])
 
   return (
     <>

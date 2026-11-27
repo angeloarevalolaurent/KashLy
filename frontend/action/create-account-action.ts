@@ -1,13 +1,14 @@
 "use server"
-import { RegisterSchema } from "@/src/schemas";
+import { RegisterSchema, SuccessSchema } from "@/src/schemas";
 
 type prevStateProps = {
-  errors: {
-        email?: string[]
-        name?: string[]
-        password?: string[]
-        password_confirmation?: string[]
-    }
+    errors: {
+            email?: string[]
+            name?: string[]
+            password?: string[]
+            password_confirmation?: string[]
+        }
+    success: string
 }
 
 export async function registerAccount (prevState:prevStateProps, formData: FormData){
@@ -25,7 +26,8 @@ export async function registerAccount (prevState:prevStateProps, formData: FormD
     if (!register.success) {
          
         return{
-            errors: register.error.flatten().fieldErrors
+            errors: register.error.flatten().fieldErrors,
+            success: prevState.success
         }
     }
 
@@ -48,7 +50,9 @@ export async function registerAccount (prevState:prevStateProps, formData: FormD
     const json = await req.json()
     console.log(json);
     
+    const success = SuccessSchema.parse(json)
     return{
         errors:{},
+        success
     }
 }
