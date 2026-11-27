@@ -4,12 +4,17 @@ import { registerAccount } from "@/action/create-account-action"
 import { useFormState } from "react-dom"
 
 export default function RegisterForm() {
-
+    const [state, dispatch] = useFormState(registerAccount,{
+        errors:[],
+    })
    
+    console.log(state);
+    
+
   return (
     <>
         <form
-            action={registerAccount}
+            action={dispatch}
             className="mt-10 space-y-5 text-[#141B2D]"
             noValidate
         >

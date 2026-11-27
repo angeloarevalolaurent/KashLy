@@ -1,9 +1,11 @@
 "use server"
 import { RegisterSchema } from "@/src/schemas";
 
+type prevStateProps = {
+   errors: string[]
+}
 
-
-export async function registerAccount (formData: FormData){
+export async function registerAccount (prevState:prevStateProps, formData: FormData){
     
     const registerData = {
         email: formData.get('email'),
@@ -14,12 +16,15 @@ export async function registerAccount (formData: FormData){
 
     // Validar los datos con Zod
     const register = RegisterSchema.safeParse(registerData)
-    const errors = register.error?.issues.map(error => error.message)
+   
     if (!register.success) {
-        {}
+         const errors = register.error?.issues.map(error => error.message)
+        return{
+            errors
+        }
     }
-    console.log(errors);
-    console.log(register);
+
+
     //TODO: Registrar Usuario
    const url= `${process.env.API_URL}/auth/create-account`
 
@@ -38,4 +43,7 @@ export async function registerAccount (formData: FormData){
     const json = await req.json()
     console.log(json);
     
+    return{
+        errors:[],
+    }
 }
