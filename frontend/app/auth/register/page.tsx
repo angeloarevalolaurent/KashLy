@@ -1,5 +1,4 @@
 import RegisterForm from "@/components/auth/RegisterForm";
-import Logo from "@/components/ui/Logo";
 import { Metadata } from "next";
 
 export const metadata : Metadata = {
@@ -10,9 +9,6 @@ export const metadata : Metadata = {
 export default function RegisterPage() {
   return (
     <>
-      <div className="mb-6">
-        <Logo/>
-      </div>
 
       <h1 className="font-black text-5xl md:text-6xl text-[#141B2D] tracking-tight">
         Crea una cuenta
