@@ -1,7 +1,11 @@
 import RegisterForm from "@/components/auth/RegisterForm";
 import Logo from "@/components/ui/Logo";
+import { Metadata } from "next";
 
-
+export const metadata : Metadata = {
+    title : 'Kashly -  Crear Cuenta',
+    description: "Crea tu cuenta en Kashly y comienza a administrar tus presupuestos y gastos personales."
+}
 
 export default function RegisterPage() {
   return (
