@@ -1,11 +1,11 @@
 'use client'
-
+import ErrorMessage from "../ui/ErrorMessage"
 import { registerAccount } from "@/action/create-account-action"
 import { useFormState } from "react-dom"
 
 export default function RegisterForm() {
     const [state, dispatch] = useFormState(registerAccount,{
-        errors:[],
+        errors:{},
     })
    
     console.log(state);
@@ -30,6 +30,11 @@ export default function RegisterForm() {
                     className="w-full bg-[#F8FAFC] border border-slate-200 focus:border-[#47A329] focus:bg-white focus:ring-4 focus:ring-[#47A329]/15 outline-none transition-all p-3.5 rounded-xl text-[#141B2D] placeholder:text-slate-400"
                     name="email"
                 />
+                 {state.errors.email?.[0] && (
+                    <ErrorMessage>
+                        {state.errors.email[0]}
+                    </ErrorMessage>
+                )}
             </div>
 
             <div className="flex flex-col gap-2">
@@ -44,6 +49,11 @@ export default function RegisterForm() {
                     className="w-full bg-[#F8FAFC] border border-slate-200 focus:border-[#47A329] focus:bg-white focus:ring-4 focus:ring-[#47A329]/15 outline-none transition-all p-3.5 rounded-xl text-[#141B2D] placeholder:text-slate-400"
                     name="name"
                 />
+                 {state.errors.name?.[0] && (
+                    <ErrorMessage>
+                        {state.errors.name[0]}
+                    </ErrorMessage>
+                )}
             </div>
 
             <div className="flex flex-col gap-2">
@@ -58,6 +68,11 @@ export default function RegisterForm() {
                     className="w-full bg-[#F8FAFC] border border-slate-200 focus:border-[#47A329] focus:bg-white focus:ring-4 focus:ring-[#47A329]/15 outline-none transition-all p-3.5 rounded-xl text-[#141B2D] placeholder:text-slate-400"
                     name="password"
                 />
+                {state.errors.password?.[0] && (
+                    <ErrorMessage>
+                        {state.errors.password[0]}
+                    </ErrorMessage>
+                )}
             </div>
 
             <div className="flex flex-col gap-2">
@@ -72,6 +87,11 @@ export default function RegisterForm() {
                     className="w-full bg-[#F8FAFC] border border-slate-200 focus:border-[#47A329] focus:bg-white focus:ring-4 focus:ring-[#47A329]/15 outline-none transition-all p-3.5 rounded-xl text-[#141B2D] placeholder:text-slate-400"
                     name="password_confirmation"
                 />
+                {state.errors.password_confirmation?.[0] && (
+                    <ErrorMessage>
+                        {state.errors.password_confirmation[0]}
+                    </ErrorMessage>
+                )}
             </div>
 
             <input

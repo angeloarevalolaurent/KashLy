@@ -2,7 +2,12 @@
 import { RegisterSchema } from "@/src/schemas";
 
 type prevStateProps = {
-   errors: string[]
+  errors: {
+        email?: string[]
+        name?: string[]
+        password?: string[]
+        password_confirmation?: string[]
+    }
 }
 
 export async function registerAccount (prevState:prevStateProps, formData: FormData){
@@ -18,9 +23,9 @@ export async function registerAccount (prevState:prevStateProps, formData: FormD
     const register = RegisterSchema.safeParse(registerData)
    
     if (!register.success) {
-         const errors = register.error?.issues.map(error => error.message)
+         
         return{
-            errors
+            errors: register.error.flatten().fieldErrors
         }
     }
 
@@ -44,6 +49,6 @@ export async function registerAccount (prevState:prevStateProps, formData: FormD
     console.log(json);
     
     return{
-        errors:[],
+        errors:{},
     }
 }
