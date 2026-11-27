@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 180" width="680" height="180" role="img" aria-label="KashLy logo">
+  <defs>
+    <style>
+      .wordmark {
+        font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        font-size: 96px;
+        font-weight: 800;
+        letter-spacing: -2px;
+      }
+      .kash {
+        fill: #141b2d;
+      }
+      .ly {
+        fill: #f29d18;
+      }
+      .sprout {
+        fill: #47a329;
+      }
+    </style>
+  </defs>
+
+  
+  <g class="sprout">
+    
+    <path d="M 86 138 L 86 72 C 86 58 96 46 110 42 C 98 54 96 66 96 80 L 96 138 Z" />
+    
+    <path d="M 96 64 C 102 36 128 22 154 20 C 146 46 126 66 96 64 Z" />
+    
+    <path d="M 86 92 C 62 90 42 74 34 52 C 58 54 78 68 86 92 Z" />
+    
+    <path d="M 96 102 C 114 96 130 84 138 68 C 122 72 106 82 96 102 Z" />
+    
+    <path d="M 118 98 A 21 21 0 1 0 139 119 A 21 21 0 0 0 118 98 Z M 118 111 A 8 8 0 1 1 110 119 A 8 8 0 0 1 118 111 Z" />
+  </g>
+
+  
+  <text x="166" y="132" class="wordmark">
+    <tspan class="kash">Kash</tspan><tspan class="ly">Ly</tspan>
+  </text>
+</svg>
