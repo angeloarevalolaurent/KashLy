@@ -1,10 +1,15 @@
 'use client'
 
+import { registerAccount } from "@/action/create-account-action"
+import { useFormState } from "react-dom"
+
 export default function RegisterForm() {
 
+   
   return (
     <>
         <form
+            action={registerAccount}
             className="mt-10 space-y-5 text-[#141B2D]"
             noValidate
         >

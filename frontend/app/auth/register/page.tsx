@@ -20,6 +20,7 @@ export default function RegisterPage() {
       </p>
 
       <RegisterForm />
+      
      <nav className="mt-8 flex flex-col items-center space-y-3 border-t border-slate-200/80 pt-6 text-sm sm:flex-row sm:justify-between sm:space-y-0">
       <Link
         href="/auth/login"
