@@ -1,4 +1,5 @@
 'use client'
+
 import ErrorMessage from "../ui/ErrorMessage"
 import { registerAccount } from "@/action/create-account-action"
 import { useEffect } from "react"
@@ -13,6 +14,9 @@ export default function RegisterForm() {
    
     console.log(state);
     useEffect(()=>{
+        if (state.errors.general) {
+        toast.error(state.errors.general);
+        }
         if (state.success) {
             toast.success(state.success)
         }
@@ -25,6 +29,7 @@ export default function RegisterForm() {
             className="mt-10 space-y-5 text-[#141B2D]"
             noValidate
         >
+    
             <div className="flex flex-col gap-2">
                 <label
                     className="font-bold text-lg text-[#141B2D]"

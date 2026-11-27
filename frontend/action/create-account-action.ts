@@ -1,5 +1,5 @@
 "use server"
-import { RegisterSchema, SuccessSchema } from "@/src/schemas";
+import { ErrorResponseSchema, RegisterSchema, SuccessSchema } from "@/src/schemas";
 
 type prevStateProps = {
     errors: {
@@ -7,11 +7,12 @@ type prevStateProps = {
             name?: string[]
             password?: string[]
             password_confirmation?: string[]
+            general?:string
         }
     success: string
 }
 
-export async function registerAccount (prevState:prevStateProps, formData: FormData){
+export async function registerAccount (prevState:prevStateProps, formData: FormData): Promise<prevStateProps>{
     
     const registerData = {
         email: formData.get('email'),
@@ -50,6 +51,18 @@ export async function registerAccount (prevState:prevStateProps, formData: FormD
     const json = await req.json()
     console.log(json);
     
+    if (!req.ok) {
+      const parsedError = ErrorResponseSchema.safeParse(json);
+      return {
+        errors: {
+          general: parsedError.success
+            ? parsedError.data.error
+            : "No se pudo completar el registro. Intenta nuevamente.",
+        },
+        success: "",
+      };
+    }
+
     const success = SuccessSchema.parse(json)
     return{
         errors:{},
