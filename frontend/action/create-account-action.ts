@@ -13,9 +13,14 @@ export async function registerAccount (formData: FormData){
     }
     const register = RegisterSchema.safeParse(registerData)
     const errors = register.error?.issues.map(error => error.message)
-    
-    console.log(errors);
     console.log(register);
+    console.log(errors);
+    
+    
+    //TODO: Registrar Usuario
+   const url= `${process.env.FRONTEND_URL}/auth/create-account`
+
+    console.log(url);
     
 
 
