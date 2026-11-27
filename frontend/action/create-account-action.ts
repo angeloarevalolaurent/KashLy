@@ -1,4 +1,6 @@
 "use server"
+import { RegisterSchema } from "@/src/schemas";
+
 
 
 export async function registerAccount (formData: FormData){
@@ -9,6 +11,12 @@ export async function registerAccount (formData: FormData){
         password: formData.get('password'),
         password_confirmation: formData.get('password_confirmation')
     }
-    console.log(registerData);
+    const register = RegisterSchema.safeParse(registerData)
+    const errors = register.error?.issues.map(error => error.message)
     
+    console.log(errors);
+    console.log(register);
+    
+
+
 }
