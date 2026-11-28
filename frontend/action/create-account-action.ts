@@ -55,14 +55,13 @@ export async function registerAccount (prevState:prevStateProps, formData: FormD
       const parsedError = ErrorResponseSchema.safeParse(json);
       return {
         errors: {
-          general: parsedError.success
-            ? parsedError.data.error
-            : "No se pudo completar el registro. Intenta nuevamente.",
+          general: parsedError.data?.error
+            
         },
         success: "",
       };
     }
-
+   
     const success = SuccessSchema.parse(json)
     return{
         errors:{},

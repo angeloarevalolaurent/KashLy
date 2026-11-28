@@ -23,13 +23,14 @@ export default function RegisterForm() {
         if (state.success) {
             toast.success(state.success)
             ref.current?.reset()
-            router.push('/auth/login')
+        //  router.push('/auth/confirm-account')
         }
-    },[state])
+    },[state, router])
 
   return (
     <>
         <form
+            ref={ref}
             action={dispatch}
             className="mt-10 space-y-5 text-[#141B2D]"
             noValidate

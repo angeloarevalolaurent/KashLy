@@ -8,34 +8,39 @@ import { generateJWT } from "../utils/jwt";
 
 export class AuthController {
 
-    static createAccount = async (req:Request, res: Response) => {
-        
-        const {email, password} = req.body
-        const userExists = await User.findOne({where:{email}})
-        if (userExists) {
-            const error = new Error('Un usario con ese email ya esta registrado')
-            return res.status(401).json({error: error.message})
-        }
-        
+    static createAccount = async (req: Request, res: Response) => {
+        const { email, password } = req.body;
+
         try {
-           const user = new User(req.body)
-            user.password = await hashPassword(password)
-            user.token = generateToken()
-            await user.save()
+            const userExists = await User.findOne({ where: { email } });
+            if (userExists) {
+            res.status(409).json({ error: "Un usuario con ese email ya está registrado" });
+            return;
+            }
+
+            const user = new User(req.body);
+            user.password = await hashPassword(password);
+            user.token = generateToken();
+            await user.save();
+
+            try {
             await AuthEmail.sendConfirmationEmail({
                 name: user.name,
                 email: user.email,
-                token: user.token
-            })
+                token: user.token,
+            });
+            } catch (emailError) {
+            console.error("No se pudo enviar el correo de confirmación:", emailError);
+            }
 
-            res.status(201).json('Cuenta Creada Correctamente')
+            res.status(201).json("Cuenta Creada Correctamente");
         } catch (error) {
-            
+            console.error("Detalle del error en createAccount:", error);
+            res.status(500).json({ error: "Hubo un error" });
         }
-    
-    }
+    };
 
-     static confirmAccount = async(req:Request, res: Response) => {
+    static confirmAccount = async(req:Request, res: Response) => {
         
         try {
            const {token} = req.body
