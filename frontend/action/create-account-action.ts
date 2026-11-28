@@ -13,7 +13,7 @@ type prevStateProps = {
 }
 
 export async function registerAccount (prevState:prevStateProps, formData: FormData): Promise<prevStateProps>{
-    
+    //TODO: Obtener los datos del formulario
     const registerData = {
         email: formData.get('email'),
         name: formData.get('name'),
@@ -21,9 +21,10 @@ export async function registerAccount (prevState:prevStateProps, formData: FormD
         password_confirmation: formData.get('password_confirmation')
     }
 
-    // Validar los datos con Zod
+    //TODO: Validar los datos con Zod
     const register = RegisterSchema.safeParse(registerData)
    
+    //Manejo de errores de validación
     if (!register.success) {
          
         return{
@@ -51,6 +52,7 @@ export async function registerAccount (prevState:prevStateProps, formData: FormD
     const json = await req.json()
     console.log(json);
     
+    //TODO: Manejo de errores del backend
     if (!req.ok) {
       const parsedError = ErrorResponseSchema.safeParse(json);
       return {
@@ -62,6 +64,7 @@ export async function registerAccount (prevState:prevStateProps, formData: FormD
       };
     }
    
+    //TODO: Respuesta exitosa
     const success = SuccessSchema.parse(json)
     return{
         errors:{},
